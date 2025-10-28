@@ -1,0 +1,872 @@
+
+@import 'vazirmatn/Vazirmatn-font-face.css';
+
+
+@import './styles/design-system.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.react-pdf__Page {
+  position: relative;
+  overflow: hidden;
+}
+
+.react-pdf__Page__canvas {
+  display: block;
+}
+
+.react-pdf__Page__svg {
+  display: block;
+}
+
+.react-pdf__Page__textContent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0% 0%;
+  opacity: 0.2;
+  z-index: 1;
+}
+
+.react-pdf__Page__textContent span {
+  position: absolute;
+  white-space: pre;
+  transform-origin: 0% 0%;
+  cursor: text;
+  font-family: 'Vazirmatn', Arial, sans-serif !important;
+}
+
+.react-pdf__Page__annotations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0% 0%;
+  z-index: 2;
+}
+
+.react-pdf__Page__annotations .linkAnnotation,
+.react-pdf__Page__annotations .textAnnotation,
+.react-pdf__Page__annotations .widgetAnnotation,
+.react-pdf__Page__annotations .popupAnnotation {
+  position: absolute;
+  cursor: pointer;
+}
+
+.react-pdf__Page__annotations .linkAnnotation > a,
+.react-pdf__Page__annotations .textAnnotation > a,
+.react-pdf__Page__annotations .widgetAnnotation > a,
+.react-pdf__Page__annotations .popupAnnotation > a {
+  position: absolute;
+  display: block;
+  transform-origin: 0% 0%;
+}
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+  
+  
+  --persian-blue-50: hsl(214, 100%, 97%);
+  --persian-blue-100: hsl(214, 95%, 93%);
+  --persian-blue-200: hsl(213, 97%, 87%);
+  --persian-blue-300: hsl(212, 96%, 78%);
+  --persian-blue-400: hsl(213, 94%, 68%);
+  --persian-blue-500: hsl(217, 91%, 60%);
+  --persian-blue-600: hsl(221, 83%, 53%);
+  --persian-blue-700: hsl(224, 76%, 48%);
+  --persian-blue-800: hsl(226, 71%, 40%);
+  --persian-blue-900: hsl(224, 64%, 33%);
+  
+  
+  --persian-gold-50: hsl(48, 100%, 96%);
+  --persian-gold-100: hsl(48, 96%, 89%);
+  --persian-gold-200: hsl(48, 97%, 77%);
+  --persian-gold-300: hsl(46, 97%, 65%);
+  --persian-gold-400: hsl(43, 96%, 56%);
+  --persian-gold-500: hsl(38, 92%, 50%);
+  --persian-gold-600: hsl(32, 95%, 44%);
+  --persian-gold-700: hsl(26, 90%, 37%);
+  --persian-gold-800: hsl(23, 83%, 31%);
+  --persian-gold-900: hsl(22, 78%, 26%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+    direction: rtl;
+    text-align: right;
+  }
+
+  body {
+    @apply antialiased bg-background text-foreground;
+    direction: rtl;
+    text-align: right;
+    font-family: 'Vazirmatn', Arial, sans-serif;
+  }
+
+  html {
+    direction: rtl;
+    text-align: right;
+  }
+
+  
+  div, p, span, h1, h2, h3, h4, h5, h6, label, button, input, textarea, select {
+    direction: rtl;
+    text-align: right;
+    font-family: 'Vazirmatn', Arial, sans-serif;
+  }
+
+  
+  * {
+    font-feature-settings: "ss01";
+    font-variant-numeric: normal;
+  }
+}
+
+@layer components {
+  
+  .btn-default {
+    @apply px-6 py-3 bg-primary hover:bg-blue-600 text-primary-foreground rounded-lg font-medium transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-lg;
+    font-family: 'Vazirmatn', Arial, sans-serif !important;
+    direction: rtl;
+    text-align: center;
+  }
+  
+  .btn-destructive {
+    @apply px-6 py-3 bg-destructive hover:bg-red-700 text-destructive-foreground rounded-lg font-medium transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-lg;
+    font-family: 'Vazirmatn', Arial, sans-serif !important;
+    direction: rtl;
+    text-align: center;
+  }
+  
+  .btn-outline {
+    @apply px-6 py-3 border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground rounded-lg font-medium transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-lg;
+    font-family: 'Vazirmatn', Arial, sans-serif !important;
+    direction: rtl;
+    text-align: center;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 bg-secondary hover:bg-gray-800 text-secondary-foreground rounded-lg font-medium transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-lg;
+    font-family: 'Vazirmatn', Arial, sans-serif !important;
+    direction: rtl;
+    text-align: center;
+  }
+  
+  .btn-ghost {
+    @apply px-6 py-3 text-primary hover:bg-blue-100 rounded-lg font-medium transition-all duration-200 transform hover:-translate-y-0.5;
+    font-family: 'Vazirmatn', Arial, sans-serif !important;
+    direction: rtl;
+    text-align: center;
+  }
+  
+  .btn-link {
+    @apply px-6 py-3 text-primary hover:text-blue-700 font-medium underline-offset-4 hover:underline transition-colors;
+    font-family: 'Vazirmatn', Arial, sans-serif !important;
+    direction: rtl;
+    text-align: center;
+  }
+  
+  .btn-premium {
+    @apply px-6 py-3 bg-gradient-to-r from-persian-gold-500 to-persian-gold-600 hover:from-persian-gold-600 hover:to-persian-gold-700 text-white rounded-lg font-bold transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-xl;
+    font-family: 'Vazirmatn', Arial, sans-serif !important;
+    direction: rtl;
+    text-align: center;
+  }
+  
+  .btn-success {
+    @apply px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-medium transition-all duration-200 transform hover:-translate-y-0.5 hover:shadow-lg;
+    font-family: 'Vazirmatn', Arial, sans-serif !important;
+    direction: rtl;
+    text-align: center;
+  }
+  
+  .btn-icon {
+    @apply p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors;
+    font-family: 'Vazirmatn', Arial, sans-serif !important;
+  }
+
+  
+  .persian-rtl * {
+    direction: rtl !important;
+    text-align: right !important;
+    font-family: 'Vazirmatn', Arial, sans-serif !important;
+  }
+
+  .persian-digits {
+    font-feature-settings: "ss01";
+    font-variant-numeric: normal;
+  }
+
+  
+  .pdf-persian-content {
+    font-family: 'Vazirmatn', 'B Nazanin', 'Tahoma', Arial, sans-serif !important;
+    direction: rtl !important;
+    text-align: right !important;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1, "dlig" 1 !important;
+    font-variant-ligatures: common-ligatures discretionary-ligatures !important;
+    font-variant-numeric: normal !important;
+    text-rendering: optimizeLegibility !important;
+    unicode-bidi: bidi-override !important;
+    writing-mode: horizontal-tb !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+    font-synthesis: none !important;
+  }
+
+  .pdf-persian-content * {
+    font-family: 'Vazirmatn', 'B Nazanin', 'Tahoma', Arial, sans-serif !important;
+    direction: rtl !important;
+    text-align: right !important;
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1, "dlig" 1 !important;
+    font-variant-ligatures: common-ligatures discretionary-ligatures !important;
+    text-rendering: optimizeLegibility !important;
+    unicode-bidi: bidi-override !important;
+  }
+
+  
+  .rpv-core__text-layer {
+    font-family: 'Vazirmatn', 'B Nazanin', 'Tahoma', Arial, sans-serif !important;
+    direction: rtl !important;
+    text-align: right !important;
+    unicode-bidi: plaintext !important; 
+    text-rendering: optimizeLegibility !important;
+    font-variant-ligatures: common-ligatures !important;
+    font-feature-settings: "kern", "liga", "calt" !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+  }
+
+  
+  .rpv-core__text-layer span {
+    font-family: inherit !important;
+    direction: inherit !important;
+    unicode-bidi: inherit !important;
+    text-rendering: inherit !important;
+  }
+
+  
+  .rpv-core__viewer {
+    direction: ltr; 
+  }
+  
+  
+  .pdf-persian-content .rpv-core__text-layer {
+    direction: rtl !important;
+    unicode-bidi: bidi-override !important;
+  }
+
+  
+  .pdf-persian-content .rpv-core__text-layer {
+    font-synthesis: none !important;
+  }
+
+  
+  .react-pdf__Page__canvas {
+    font-family: 'Vazirmatn', Arial, sans-serif !important;
+    direction: rtl !important;
+    image-rendering: optimizeQuality !important;
+    image-rendering: -webkit-optimize-contrast !important;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale !important;
+  }
+
+  .react-pdf__Page {
+    direction: rtl !important;
+  }
+
+  .react-pdf__Document {
+    font-family: 'Vazirmatn', Arial, sans-serif !important;
+    direction: rtl !important;
+  }
+
+  
+  .secure-content {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    pointer-events: auto;
+    font-family: 'Vazirmatn', Arial, sans-serif !important;
+    direction: rtl !important;
+  }
+  
+  .secure-content * {
+    pointer-events: none;
+    font-family: 'Vazirmatn', Arial, sans-serif !important;
+    direction: rtl !important;
+  }
+  
+  .secure-content button,
+  .secure-content input,
+  .secure-content select,
+  .secure-content textarea {
+    pointer-events: auto;
+  }
+
+  
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+  }
+  
+  .animate-pulse-slow {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+}
+
+@keyframes fadeIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(10px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+
+.persian-digits {
+  font-feature-settings: "ss01";
+}
+
+
+.rtl {
+  direction: rtl;
+}
+
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary));
+}
+
+
+
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+
+@media (max-width: 640px) {
+  
+  .toast-container {
+    top: 0.75rem !important;
+    left: 0.75rem !important;
+    right: 0.75rem !important;
+    transform: none !important;
+    max-width: none !important;
+    width: auto !important;
+  }
+  
+  
+  .toast-item {
+    margin-bottom: 0.75rem !important;
+    padding: 1rem !important;
+    border-radius: 1rem !important;
+  }
+  
+  .toast-title {
+    font-size: 0.9rem !important;
+    line-height: 1.3rem !important;
+  }
+  
+  .toast-message {
+    font-size: 0.8rem !important;
+    line-height: 1.2rem !important;
+  }
+  
+  .toast-icon-container {
+    width: 2.5rem !important;
+    height: 2.5rem !important;
+    border-radius: 1rem !important;
+  }
+  
+  .toast-icon-container svg {
+    width: 1.25rem !important;
+    height: 1.25rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  
+  .toast-container {
+    top: 0.5rem !important;
+    left: 0.5rem !important;
+    right: 0.5rem !important;
+  }
+  
+  .toast-item {
+    padding: 0.875rem !important;
+    border-radius: 0.875rem !important;
+  }
+  
+  .toast-icon-container {
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+  }
+}
+
+
+@keyframes toast-slide-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%) scale(0.85) rotateX(-90deg);
+    filter: blur(10px);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translateY(-20%) scale(1.05) rotateX(-10deg);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0deg);
+    filter: blur(0);
+  }
+}
+
+@keyframes toast-slide-out {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0deg);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-80%) scale(0.85) rotateX(-45deg);
+    filter: blur(8px);
+  }
+}
+
+@keyframes toast-glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+  }
+}
+
+
+.toast-glass {
+  backdrop-filter: blur(25px) saturate(200%);
+  -webkit-backdrop-filter: blur(25px) saturate(200%);
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.dark .toast-glass {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+
+@media (max-width: 768px) {
+  .toast-button,
+  .toast-close {
+    min-height: 44px !important;
+    min-width: 44px !important;
+    padding: 0.75rem !important;
+    border-radius: 0.75rem !important;
+  }
+  
+  .toast-action-button {
+    padding: 0.75rem 1.25rem !important;
+    min-height: 44px !important;
+    font-size: 0.9rem !important;
+    border-radius: 0.75rem !important;
+  }
+}
+
+
+.toast-persian {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Vazirmatn', Arial, sans-serif;
+}
+
+.toast-persian .toast-content {
+  flex-direction: row-reverse;
+}
+
+.toast-persian .toast-close {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+
+.toast-premium {
+  position: relative;
+  overflow: hidden;
+}
+
+.toast-premium::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  animation: premium-shine 3s infinite;
+}
+
+@keyframes premium-shine {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.toast-sparkle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 215, 0, 0.8);
+  border-radius: 50%;
+  animation: sparkle 2s infinite;
+}
+
+
+@media (prefers-contrast: high) {
+  .toast-glass {
+    background: rgba(255, 255, 255, 0.95);
+    border: 2px solid rgba(0, 0, 0, 0.8);
+  }
+  
+  .dark .toast-glass {
+    background: rgba(0, 0, 0, 0.95);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  .toast-item {
+    animation: none !important;
+    transition: opacity 0.3s ease !important;
+  }
+  
+  .toast-sparkle,
+  .toast-premium::before {
+    animation: none !important;
+  }
+}
+
+
+
+
+.rpv-toolbar__item[aria-label*="Download"],
+.rpv-toolbar__item[aria-label*="Print"],
+.rpv-toolbar__item[aria-label*="Open"],
+.rpv-download__button,
+.rpv-print__button,
+.rpv-open__button,
+[data-testid="toolbar__download"],
+[data-testid="toolbar__print"],
+[data-testid="toolbar__open"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+
+.rpv-core__doc-download,
+.rpv-download,
+.rpv-print,
+.rpv-open {
+  display: none !important;
+}
+.secure-content {
+  
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  
+  
+  -webkit-user-drag: none !important;
+  -khtml-user-drag: none !important;
+  -moz-user-drag: none !important;
+  -o-user-drag: none !important;
+  user-drag: none !important;
+  
+  
+  -webkit-touch-callout: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+  
+  
+  -webkit-highlight: none !important;
+  -moz-highlight: none !important;
+  highlight: none !important;
+  
+  
+  outline: none !important;
+}
+
+.secure-content * {
+  
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
+  -webkit-user-drag: none !important;
+  -webkit-touch-callout: none !important;
+}
+
+
+.secure-content::selection,
+.secure-content *::selection {
+  background: transparent !important;
+  color: inherit !important;
+}
+
+.secure-content::-moz-selection,
+.secure-content *::-moz-selection {
+  background: transparent !important;
+  color: inherit !important;
+}
+
+
+.secure-content,
+.secure-content * {
+  -webkit-context-menu: none !important;
+  -moz-context-menu: none !important;
+  context-menu: none !important;
+}
+
+
+@media print {
+  .secure-content {
+    display: none !important;
+  }
+  
+  .secure-content::before {
+    content: "این محتوا محافظت شده و قابل چاپ نیست" !important;
+    display: block !important;
+    font-size: 24px !important;
+    text-align: center !important;
+    padding: 50px !important;
+    background: #f3f4f6 !important;
+    color: #374151 !important;
+  }
+}
+
+
+.secure-content[data-protected="true"] {
+  position: relative;
+  filter: none !important;
+  -webkit-filter: none !important;
+}
+
+.secure-content[data-protected="true"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 20px,
+    rgba(147, 51, 234, 0.01) 20px,
+    rgba(147, 51, 234, 0.01) 40px
+  );
+}
+
+
+.react-pdf__Page__textContent {
+  
+  opacity: 1 !important;
+  
+  
+  font-family: 'Vazirmatn', 'B Nazanin', Tahoma, Arial, sans-serif !important;
+  direction: rtl !important;
+  unicode-bidi: plaintext !important;
+  
+  
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  font-smooth: always !important;
+  text-rendering: optimizeLegibility !important;
+  font-display: swap !important;
+  font-feature-settings: "liga" 1, "kern" 1, "calt" 1, "rlig" 1 !important;
+  font-variant-ligatures: common-ligatures contextual !important;
+  
+  
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  pointer-events: none !important;
+}
+
+.react-pdf__Page__textContent span {
+  
+  font-family: 'Vazirmatn', 'B Nazanin', Tahoma, Arial, sans-serif !important;
+  font-feature-settings: "liga" 1, "kern" 1, "calt" 1, "rlig" 1, "dlig" 1 !important;
+  font-variant-ligatures: common-ligatures contextual !important;
+  direction: inherit !important;
+  unicode-bidi: inherit !important;
+  
+  
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  font-smooth: always !important;
+  text-rendering: optimizeLegibility !important;
+  font-display: swap !important;
+  
+  
+  color: rgba(0, 0, 0, 0.95) !important;
+  
+  
+  user-select: none !important;
+  -webkit-user-select: none !important;
+  -moz-user-select: none !important;
+  -ms-user-select: none !important;
+  pointer-events: none !important;
+}
+
+
+.react-pdf__Page__annotations {
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  pointer-events: none !important;
+}
+
+.react-pdf__Page__annotations .linkAnnotation {
+  pointer-events: auto !important;
+}
+
+.react-pdf__Page__annotations .linkAnnotation > a {
+  position: absolute !important;
+  font-size: 1em !important;
+  font-family: 'Vazirmatn', Arial, sans-serif !important;
+  color: transparent !important;
+  background: transparent !important;
+  border: none !important;
+  text-decoration: none !important;
+}
+
+
+.react-pdf__Page__canvas {
+  font-family: 'Vazirmatn', 'B Nazanin', Tahoma, Arial, sans-serif !important;
+  direction: rtl !important;
+  
+  
+  image-rendering: -webkit-optimize-contrast !important;
+  image-rendering: optimizeQuality !important;
+  
+  
+  -webkit-font-smoothing: antialiased !important;
+  -moz-osx-font-smoothing: grayscale !important;
+  font-smooth: always !important;
+  text-rendering: optimizeLegibility !important;
+  
+  
+  filter: contrast(1.1) brightness(1.05) saturate(1.05) !important;
+}
